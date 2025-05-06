@@ -1,6 +1,6 @@
 const { test } = require("@playwright/test");
 
-test("First playwirght test", async ({ browser }) => {
+test("First playwright test", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/");

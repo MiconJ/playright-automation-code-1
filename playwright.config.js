@@ -12,11 +12,18 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+const config = ({
   testDir: './tests',
- 
+  timeout: 40 * 1000,
+  expect: {
+    timeout: 40 * 1000,
+  },
+  reporter: 'html',
   use: {
+    browserName: 'chromium',
     trace: 'on-first-retry',
   },
 });
+
+module.exports = config;
 
