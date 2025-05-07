@@ -22,8 +22,8 @@ const config = ({
   use: {
     browserName: 'chromium',
     trace: 'on-first-retry',
+    headless: false
   },
 });
 
 module.exports = config;
-
