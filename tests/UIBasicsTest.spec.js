@@ -24,7 +24,11 @@ test.only("Open tab using page param", async ({ page }) => {
     console.error(error);
   }
 
-  //Using Locator on page to check
-  page.locator('username')
+  //Using Locator on page to do action
+  await page.locator("#username").fill('rahulshettyacademy');
+  await page.locator("[type=password]").fill('learning');
+  await page.locator("#signInBtn").click();
 
+  // check if element contain block, then get the text of element
+  await expect(await page.locator("[style*='block']").textContent()).toContain('Incorrect username/password.')
 });
