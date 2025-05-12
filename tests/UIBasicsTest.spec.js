@@ -24,11 +24,27 @@ test.only("Open tab using page param", async ({ page }) => {
     console.error(error);
   }
 
+  // Locator login form
+  const username = page.locator('#username');
+  const password = page.locator("[type=password]");
+  const signInBtn = page.locator("#signInBtn");
+  const errorMsg = page.locator("[style*='block']");
+  const cardTitles = page.locator('.card-body a');
+
   //Using Locator on page to do action
-  await page.locator("#username").fill('rahulshettyacademy');
-  await page.locator("[type=password]").fill('learning');
-  await page.locator("#signInBtn").click();
+  await username.fill('rahulshettyacademy');
+  await password.fill('learning');
+  await signInBtn.click();
+
 
   // check if element contain block, then get the text of element
-  await expect(await page.locator("[style*='block']").textContent()).toContain('Incorrect username/password.')
+  // await expect(errorMsg).toHaveText('Incorrect username/password.');
+
+  // nth: no-th -> Get the n element of array -> nth(index)
+  // nth(0) = first()
+  // console.log(await cardTitles.nth(0).textContent());
+  
+  // Get all element 
+  console.log(await cardTitles.allTextContents());
+  
 });
