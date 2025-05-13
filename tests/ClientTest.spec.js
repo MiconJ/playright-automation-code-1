@@ -6,7 +6,9 @@ test.only("Client test", async({browser, page}) => {
     await page.locator('#userPassword').fill('Iamking@000');
     await page.locator("[value='Login']").click();
     
+    // Using networkidle to wait until no network running then do the next action
     await page.waitForLoadState('networkidle');
+    
     const clientTitles = page.locator(".card-body b").allTextContents();
     console.log(await clientTitles);
 
