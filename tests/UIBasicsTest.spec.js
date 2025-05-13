@@ -8,7 +8,7 @@ test("First playwright test", async ({ browser }) => {
 });
 
 // Add .only to run only this test
-test.only("Open tab using page param", async ({ page }) => {
+test("Open tab using page param", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
 
   //Print the page title
@@ -47,4 +47,32 @@ test.only("Open tab using page param", async ({ page }) => {
   // Get all element 
   console.log(await cardTitles.allTextContents());
   
+});
+
+test.only('Select Dropdown value', async({page}) => {
+  await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  // Locator login form
+  const username = page.locator('#username');
+  const password = page.locator("[type=password]");
+  const signInBtn = page.locator("#signInBtn");
+  const dropdownOption = page.locator('select.form-control');
+  const radioBox = page.locator('.radiotextsty');
+  const dialogSubmitButton = page.locator('#okayBtn');
+
+  //Using Locator on page to do action
+  await username.fill('rahulshettyacademy');
+  await password.fill('learning');
+  await radioBox.last().click();
+
+  //Using page.pause() to pause the test then dev can debug
+  await page.pause();
+
+  await dialogSubmitButton.click();
+  await page.pause();
+
+  await dropdownOption.selectOption('consult');
+  await page.pause();
+
+  await signInBtn.click();
+
 });
