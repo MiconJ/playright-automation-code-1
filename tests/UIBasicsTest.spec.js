@@ -58,17 +58,26 @@ test.only('Select Dropdown value', async({page}) => {
   const dropdownOption = page.locator('select.form-control');
   const radioBox = page.locator('.radiotextsty');
   const dialogSubmitButton = page.locator('#okayBtn');
+  const checkAgreeTerm = page.locator('#terms');
 
   //Using Locator on page to do action
   await username.fill('rahulshettyacademy');
   await password.fill('learning');
   await radioBox.last().click();
 
+  expect(radioBox.last()).toBeChecked();
+  console.log('User check: ' + await radioBox.last().isChecked());
   //Using page.pause() to pause the test then dev can debug
   await page.pause();
 
   await dialogSubmitButton.click();
-  await page.pause();
+
+  // toBeChecked use in expert, if the result is diff with the expectation then the test will be return fail
+  // isChecked is return true/false -> Using when other element use the value for logic  
+  await checkAgreeTerm.click();
+  expect(checkAgreeTerm.toBeChecked()).toBeTruthy();
+  console.log('Agree with term : ' + await checkAgreeTerm.toBeChecked());
+
 
   await dropdownOption.selectOption('consult');
   await page.pause();
